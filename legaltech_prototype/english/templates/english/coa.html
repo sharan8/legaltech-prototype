@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="/static/main/home.css">
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="text-align: center; padding-top: 15px">
+	<h1>Here's what you have to do:</h1>
+    <h3>{{ coa_object.coa }}</h3>
+</div>
+
+{% endblock %}
