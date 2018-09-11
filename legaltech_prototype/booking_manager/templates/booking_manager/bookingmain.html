@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<nav class="navbar navbar-expand-md navbar-dark fixed-top p-3 mb-2 bg-danger text-white">
+  <a class="navbar-brand" href="#">AskSc Booking Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'main:index' %}">Home</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+<div class="container-fluid" style="text-align: center; padding-top:96px;">
+  <h2>Book a meeting at your nearest Community Centres</h2>
+  <ul class="list-group">
+    {% for location in locations %}
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}"
+              aria-expanded="true" aria-controls="collapseOne">
+            {{location.name}}
+          </button>
+        </h5>
+      </div>
+      <div id="collapse{{ forloop.counter }}" class="collapse show" aria-labelledby="headingOne">
+        <div class="card-body" style="text-align:left">
+          <h6>{{ location.address }}</h6>
+          <table class="table bg-white">
+            <thead class="thead">
+            <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Availability</th>
+                <th scope="col">Select</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for session in location.children %}
+            <tr>
+                <td>{{ session.day }}</td>
+                <td>{{ session.start_time }}</td>
+                <td>{{ session.end_time }}</td>
+                <td>{{ session.status }}</td>
+                <td>
+                    <a href="/booking_manager/{{ session.id }}/book" class="btn btn-primary btn-danger btn-sm active" role="button"
+                       aria-pressed="true">Book</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </ul>
+
+</div>
+{% endblock %}
