@@ -1,12 +1,18 @@
 from django.db import models
 
+from django.template.defaultfilters import slugify
+
+
 # Create your models here.
 
 class Location(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     lawyer = models.CharField(max_length=100)
-
+    
+    def address_slug(self):
+        return slugify(self.address)
+    
     def children(self):
         return Session.objects.filter(location=self)
 

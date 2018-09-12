@@ -30,9 +30,13 @@
           </button>
         </h5>
       </div>
-      <div id="collapse{{ forloop.counter }}" class="collapse show" aria-labelledby="headingOne">
+
+      <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="headingOne">
         <div class="card-body" style="text-align:left">
-          <h6>{{ location.address }}</h6>
+          <h6>Address : {{ location.address }}</h6>
+          <a href='/booking_manager/{{ location.address_slug }}/search' class="btn btn-link btn-sm active pull-right" role="button"
+              aria-pressed="true">Find my location</a>
+
           <table class="table bg-white">
             <thead class="thead">
             <tr>
@@ -51,8 +55,14 @@
                 <td>{{ session.end_time }}</td>
                 <td>{{ session.status }}</td>
                 <td>
+
+                    {% if session.status == "Available" %}
                     <a href="/booking_manager/{{ session.id }}/book" class="btn btn-primary btn-danger btn-sm active" role="button"
                        aria-pressed="true">Book</a>
+                    {% else %}
+                    <h6>Unavailable</h6>
+                    {% endif %}
+
                 </td>
             </tr>
             {% endfor %}
