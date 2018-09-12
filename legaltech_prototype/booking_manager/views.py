@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Location, Session
 
@@ -16,3 +17,6 @@ def book(request, session_id):
     session.status = 'Booked'
     session.save()
     return redirect('/booking_manager/')
+
+def search(request, address):
+    return HttpResponseRedirect("https://www.google.com/maps/search/"+address)
