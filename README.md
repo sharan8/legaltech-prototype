@@ -36,10 +36,11 @@ Create a superuser to update databases with foloowing command:
 `python manage.py createsuperuser`
 
 To run LawDirect run the following command:
+
 `python manager.py runserver`
 
 ## Updating Database ##
 These are the model descriptions:
 - Problem - a path button to be displayed that can either lead to a link/booking manager or more children paths
 - Location - a community club location
-- Session - a session that can be booked 
+- Session - a session that can be booked
