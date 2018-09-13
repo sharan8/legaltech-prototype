@@ -37,7 +37,7 @@ Create a superuser to update databases with foloowing command:
 
 To run LawDirect run the following command:
 
-`python manager.py runserver`
+`python manage.py runserver`
 
 ## Updating Database ##
 These are the model descriptions:
